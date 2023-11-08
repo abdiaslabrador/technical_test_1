@@ -10,7 +10,9 @@ El objetivo de la prueba técnica consistía en hacer peticiones a una api de ch
 •   DELETE: elimina el chiste indicado en el parametro number.
 
 Para el end-point de matemática se requería que al hacer solicitudes de tipo get hiciera lo siguiente:
+
 •	GET: Endpoint al que se le pasará un query param llamado “numbers” con una lista de números enteros. La respuesta de este endpoint debe ser el mínimo común múltiplo de ellos'.
+
 •	GET: Endpoint al que se le pasará un query param llamado “number” con un número entero. La respuesta será ese número + 1.
 
 Para  los end-points de chistes se tiene la url "api/", "api/Chuck", "api/Dad" y para el de matemáticas se tiene la url "api/math_endpoint/"
