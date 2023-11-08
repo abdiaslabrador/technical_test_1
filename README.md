@@ -13,4 +13,4 @@ Para el end-point de matemática se requería que al hacer solicitudes de tipo g
 •	GET: Endpoint al que se le pasará un query param llamado “numbers” con una lista de números enteros. La respuesta de este endpoint debe ser el mínimo común múltiplo de ellos'.
 •	GET: Endpoint al que se le pasará un query param llamado “number” con un número entero. La respuesta será ese número + 1.
 
-Para los end-points de chistes se tiene la url "api/", "api/Chuck", "api/Dad" y para el de matemáticas se tiene la url "api/math_endpoint/"
+Para  los end-points de chistes se tiene la url "api/", "api/Chuck", "api/Dad" y para el de matemáticas se tiene la url "api/math_endpoint/"
