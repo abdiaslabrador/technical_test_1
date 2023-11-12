@@ -24,9 +24,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title="Jokes and math API",
       default_version='v1',
-      description="Test description",
+      description="This an api to practice django rest framework skills",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="contact@snippets.local"),
       license=openapi.License(name="BSD License"),
@@ -41,5 +41,6 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    path('jokes/', include('api.jokes.urls', namespace="jokes_api")),
+    path('math/', include('api.math_api.urls', namespace="math_api")),
 ]
