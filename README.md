@@ -1,18 +1,25 @@
+# Prueba técnica
 Esto es una prueba técnica para practicar habilidades en django rest framework.
 El objetivo de la prueba técnica consistía en hacer peticiones a una api de chistes y a otra realacionada con matemáticas. Para el end-point de chistes se requería que:
 
-•   GET: devolverá un chiste aleatorio si no se pasa ningún path param. Si se envía el path param habrá que comprobar si tiene el valor “Chuck” o el valor “Dad”. Si tiene el valor “Chuck” se conseguirá el chiste de este API https://api.chucknorris.io, si tiene el valor “Dad” se conseguirá del API https://icanhazdadjoke.com/api, en caso de que el valor no sea ninguno de esos dos se devolverá el error correspondiente.
+# Metas
+La prueba consiste en crear un API Rest en el framework Django utilizando los siguientes repositorios para realizar las solicitudes:
+- https://api.chucknorris.io/
+- https://icanhazdadjoke.com/api
 
-•   POST:  guardará en una base de datos el chiste (texto pasado por parámetro)
+**Endpoint de chistes**
+- GET: devolverá un chiste aleatorio si no se pasa ningún path param. Si se envía el path param habrá que comprobar si tiene el valor “Chuck” o el valor “Dad”. Si tiene el valor “Chuck” se conseguirá el chiste de este API https://api.chucknorris.io, si tiene el valor “Dad” se conseguirá del API https://icanhazdadjoke.com/api, en caso de que el valor no sea ninguno de esos dos se devolverá el error correspondiente.
 
-•   UPDATE: actualiza el chiste con el nuevo texto sustituyendo al chiste indicado en el parámetro “number”.
+- POST:  guardará en una base de datos el chiste (texto pasado por parámetro)
 
-•   DELETE: elimina el chiste indicado en el parametro number.
+- UPDATE: actualiza el chiste con el nuevo texto sustituyendo al chiste indicado en el parámetro “number”.
 
-Para el end-point de matemática se requería que al hacer solicitudes de tipo get hiciera lo siguiente:
+- DELETE: elimina el chiste indicado en el parametro number.
 
-•	GET: Endpoint al que se le pasará un query param llamado “numbers” con una lista de números enteros. La respuesta de este endpoint debe ser el mínimo común múltiplo de ellos'.
+**Endpoint matemático**
 
-•	GET: Endpoint al que se le pasará un query param llamado “number” con un número entero. La respuesta será ese número + 1.
+- GET: Endpoint al que se le pasará un query param llamado “numbers” con una lista de números enteros. La respuesta de este endpoint debe ser el mínimo común múltiplo de ellos'.
+
+- GET: Endpoint al que se le pasará un query param llamado “number” con un número entero. La respuesta será ese número + 1.
 
 Para  los end-points de chistes se tiene la url "api/", "api/Chuck", "api/Dad" y para el de matemáticas se tiene la url "api/math_endpoint/"
