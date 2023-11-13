@@ -16,7 +16,6 @@ def random_joke(request):
 		return Response(joke)
 	
 	elif request.method == 'POST':
-		# serializer = JokeSerializer(data=request.data)
 		joke ={'joke':request.GET.get(list(request.GET.dict())[0])}
 		serializer = JokeSerializer(data=joke)
 		if serializer.is_valid():
@@ -57,7 +56,7 @@ def random_joke(request):
 		
 
 @api_view(['GET'])
-def random_chuck_or_dad_joke(request, elect):
+def random_chuck_or_dad_joke(request, select):
 	if select == "Chuck":
 		joke = random_chuck_joke_function()
 	elif select == "Dad":
