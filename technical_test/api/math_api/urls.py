@@ -5,5 +5,5 @@ from api.math_api import views
 app_name="api"
 
 urlpatterns = [
-    path('math_endpoint/', views.math_endpoint, name='math_endpoint')
+    path('', views.math_endpoint, name='math_endpoint')
 ]
