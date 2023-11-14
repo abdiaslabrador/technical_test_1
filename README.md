@@ -41,7 +41,9 @@ La prueba consiste en crear una API Rest de chistes y matemática con Django fra
 
 ```pip install -r requirements.txt```
 
-4- Se debe crear el archivo .env en la raíz del proyecto y establecer los parámetros de acuerdo a tu configuración de conexión base de datos y tu SECRET_KEY, ejemplo:
+4- Previamente y antes de abrir el proyecto se debe crear la base de datos en postgreSQL.
+
+5- Se debe crear el archivo .env en la raíz del proyecto y establecer los parámetros de acuerdo a tu configuración de conexión base de datos y tu SECRET_KEY, ejemplo:
 
 ```
 DB_NAME=technical_test
@@ -50,12 +52,28 @@ DB_PASSWORD=123456
 DB_HOST=localhost
 DB_PORT=5432
 ```
-5- Dentro del entorno virtual ejecutar las migraciones con el comando:
+6- Dentro del entorno virtual ejecutar las migraciones con el comando:
 
 ```python manage.py migrate```
 
-6- Finalmente, ejecutar el proyecto con:
+7- Finalmente, ejecutar el proyecto con:
 
 ```python manage.py runserver```
 
-Para  los end-points de chistes se tiene la url "api/", "api/Chuck", "api/Dad" y para el de matemáticas se tiene la url "api/math_endpoint/"
+# Endpoints
+El proyecto cuenta en total con tres endpoints, dos de ellos son correspondientes al de Chistes (jokes), y el otro al endpoint matemático (math).
+
+![Captura de pantalla 2023-11-14 113922](https://github.com/abdiaslabrador/technical_test_1/assets/44957286/f5b356db-fa52-4a36-8703-fe4a93666c85)
+
+**ENDPOINT /jokes/:**
+
+- GET: Obtiene un chiste aleatorio.
+- POST: Agrega un nuevo chiste por query param "text".
+- PUT: Modificar chiste almacenado; tiene dos query params: "joke" como el texto con el nuevo chiste y "number" el ID del chiste a modificar.
+- DELETE: Elimina chiste almacenado; tiene un query param "number", el cuál corresponde al ID del chiste a eliminar.
+
+**ENDPOINT /jokes/{select}/**
+- GET: Obtiene un chiste aleatorio por medio de consulta de api, tiene un path param el cuál debe ser "Chuck"o "Dad", en caso de no colocar ninguno lanza error.
+ 
+**ENDPOINT /math/**
+- GET: tiene dos query params, "number" obtiene el cálculo del número introducido por query param + 1 y "numbers" obtiene el mínimo común múltiplo del arreglo de enteros introducido por query param, ejemplo del arraglo: numbers=1,2,3,4.
