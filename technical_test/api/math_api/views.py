@@ -2,16 +2,17 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from .math_functions import numbers_option, one_number
+from rest_framework.views import APIView
 
 
 # Create your views here.
-@api_view(["GET"])
-def math_endpoint(request):
-    if request.method == "GET" and request.GET.get("numbers"):
-        data = numbers_option(request)
-        return Response(data)
+class MathEndpoint(APIView):
+    def get(self, request, format=None):
+        if request.GET.get("numbers"):
+            data = numbers_option(request)
+            return Response(data)
 
-    if request.method == "GET" and request.GET.get("number"):
-        data = one_number(request)
-        return Response(data)
-    return Response(status.HTTP_404_NOT_FOUND)
+        if request.GET.get("number"):
+            data = one_number(request)
+            return Response(data)
+        return Response(status.HTTP_404_NOT_FOUND)

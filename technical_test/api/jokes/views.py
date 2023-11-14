@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import JokeModel
 from .serializers import JokeSerializer
+from rest_framework.views import APIView
 
 # from drf_yasg.utils import swagger_auto_schema
+
 from .joke_functions import (
     random_joke_get_method,
     random_chuck_joke_function,
@@ -12,14 +14,12 @@ from .joke_functions import (
 )
 
 
-@api_view(["GET", "POST", "PUT", "DELETE"])
-def random_joke(request):
-    joke = {}
-    if request.method == "GET":
+class RandomJoke(APIView):
+    def get(self, request, format=None):
         joke = random_joke_get_method()
-        return Response(joke)
+        return Response(joke, status=200)
 
-    elif request.method == "POST":
+    def post(self, request, format=None):
         joke = {"joke": request.GET.get(list(request.GET.dict())[0])}
         serializer = JokeSerializer(data=joke)
         if serializer.is_valid():
@@ -27,14 +27,14 @@ def random_joke(request):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-    elif request.method == "PUT":
-        joke_data = request.GET.get("joke")
+    def put(self, request, format=None):
         id_joke = request.GET.get("number")
+        joke_data = request.GET.get("joke")
 
         try:
             joke = JokeModel.objects.get(id=id_joke)
         except JokeModel.DoesNotExist:
-            return Response(status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = JokeSerializer(joke, data={"id": id_joke, "joke": joke_data})
         if serializer.is_valid():
@@ -42,13 +42,13 @@ def random_joke(request):
             return Response(serializer.data, status=200)
         return Response(serializer.errors, status=400)
 
-    elif request.method == "DELETE":
+    def delete(self, request, format=None):
         id_joke = request.GET.get("number")
 
         try:
             joke = JokeModel.objects.get(id=id_joke)
         except JokeModel.DoesNotExist:
-            return Response(status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
         data = {}
         operation = joke.delete()
@@ -59,12 +59,13 @@ def random_joke(request):
         return Response(data)
 
 
-@api_view(["GET"])
-def random_chuck_or_dad_joke(request, select):
-    if select == "Chuck":
-        joke = random_chuck_joke_function()
-    elif select == "Dad":
-        joke = random_dad_joke_function()
-    else:
-        {"message": "option not found"}
-    return Response(joke)
+class RandomChuckOrDadJoke(APIView):
+    def get(self, request, select, format=None):
+        if select == "Chuck":
+            joke = random_chuck_joke_function()
+            return Response(joke, status=200)
+        elif select == "Dad":
+            joke = random_dad_joke_function()
+            return Response(joke, status=200)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
