@@ -16,6 +16,9 @@ from .joke_functions import (
 
 class RandomJoke(APIView):
     def get(self, request, format=None):
+        """
+        Obtiene un chiste aleatorio
+        """
         joke = random_joke_get_method()
         return Response(joke, status=200)
 
