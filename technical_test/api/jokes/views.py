@@ -23,6 +23,9 @@ class RandomJoke(APIView):
         return Response(joke, status=200)
 
     def post(self, request, format=None):
+        """
+        Crea un chiste
+        """
         joke = {"joke": request.GET.get(list(request.GET.dict())[0])}
         serializer = JokeSerializer(data=joke)
         if serializer.is_valid():
