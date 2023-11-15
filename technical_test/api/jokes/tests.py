@@ -14,13 +14,13 @@ class JokesTest(APITransactionTestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        url = "/jokes/Chuck"
+        url = "/jokes/Chuck/"
         response = self.client.get(url)
-        self.assertTrue(response.status_code == 200 or response.status_code == 301)
+        self.assertEqual(response.status_code, 200)
 
-        url = "/jokes/Dad"
+        url = "/jokes/Dad/"
         response = self.client.get(url)
-        self.assertTrue(response.status_code == 200 or response.status_code == 301)
+        self.assertEqual(response.status_code, 200)
 
     def test_post_joke(self):
         """
