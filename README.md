@@ -77,3 +77,8 @@ El proyecto cuenta en total con tres endpoints, dos de ellos son correspondiente
  
 **ENDPOINT /math/**
 - GET: tiene dos query params, "number" obtiene el cálculo del número introducido por query param + 1 y "numbers" obtiene el mínimo común múltiplo del arreglo de enteros introducido por query param, ejemplo del arraglo: numbers=1,2,3,4.
+
+# Test
+Para probar los test escribe el comando ```python manage.py test api```. 
+
+Si quieres probra por módulos puedes escribir el comando ```python manage.py test api.jokes.tests``` o ```python manage.py test api.math_api.tests```.
