@@ -81,7 +81,7 @@ El proyecto cuenta en total con tres endpoints, dos de ellos son correspondiente
 # Test
 Para probar los test escribe el comando ```python manage.py test api```. 
 
-# Instalacion y configuración usando docker
+# Instalación y configuración usando docker
 - Se debe crear el archivo .env en la raíz del proyecto y establecer los parámetros de acuerdo a tu configuración de conexión de base de datos y las variables de entorno de docker, ya que docker define sus propias variables de entorno para conectar con postgres.
 - El valor de POSTGRES_HOST tiene que ser igual al nombre del servicio de la base de datos que se colocó en el archivo docker-compose, que para este caso le coloqué como nombre al servicio "db", ejemplo:
 
