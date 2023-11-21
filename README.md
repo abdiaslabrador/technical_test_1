@@ -104,6 +104,7 @@ db:
 ```docker compose build```
 
 Cuando finalice la instalación ejecuta el siguiente comando para correr el servidor:
+
 ```docker compose up```
 
 Ya corriendo el servidor dirígete a http://localhost:8000/ y verás la aplicación corriendo
