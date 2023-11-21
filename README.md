@@ -28,7 +28,7 @@ La prueba consiste en crear una API Rest de chistes y matemática con Django fra
 - Django REST Framework 3.14.0
 - drf-yasg 1.21.7 (swagger)
 
-# Instalación
+# Instalación (sin usar docker)
 1- Para correr la aplicación se debe contar con Python en la version 3.11.3 y postgreSQL 15.2 (Python: https://www.python.org/downloads/ PostgreSQL: https://www.postgresql.org/).
 
 2- Se recomienda usar un entorno virtual para trabajar:
@@ -43,7 +43,7 @@ La prueba consiste en crear una API Rest de chistes y matemática con Django fra
 
 4- Previamente y antes de abrir el proyecto se debe crear la base de datos en postgreSQL.
 
-5- Se debe crear el archivo .env en la raíz del proyecto y establecer los parámetros de acuerdo a tu configuración de conexión base de datos y tu SECRET_KEY, ejemplo:
+5- Se debe crear el archivo .env en la raíz del proyecto y establecer los parámetros de acuerdo a tu configuración de conexión base de datos, ejemplo:
 
 ```
 DB_NAME=technical_test
@@ -81,4 +81,29 @@ El proyecto cuenta en total con tres endpoints, dos de ellos son correspondiente
 # Test
 Para probar los test escribe el comando ```python manage.py test api```. 
 
-Si quieres probra por módulos puedes escribir el comando ```python manage.py test api.jokes.tests``` o ```python manage.py test api.math_api.tests```.
+# Instalacion y configuración usando docker
+- Se debe crear el archivo .env en la raíz del proyecto y establecer los parámetros de acuerdo a tu configuración de conexión de base de datos y las variables de entorno de docker, ya que docker define sus propias variables de entorno para conectar con postgres.
+- El valor de POSTGRES_HOST tiene que ser igual al nombre del servicio de la base de datos que se colocó en el archivo docker-compose, que para este caso le coloqué como nombre al servicio "db", ejemplo:
+
+en el archivo .env
+```
+POSTGRES_DB=technical_test
+POSTGRES_USER=abdias
+POSTGRES_PASSWORD=123456
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+```
+y en el docker-compose.yaml
+```
+db:
+    image: postgres:16
+    env_file: .env
+```
+- Vete a la raíz del proyecto y ejecuta este comando para instalar la imagen y cada dependencia necesaria en el proyecto:
+
+```docker compose build```
+
+Cuando finalice la instalación ejecuta el siguiente comando para correr el servidor:
+```docker compose up```
+
+Ya corriendo el servidor dirígete a http://localhost:8000/ y verás la aplicación corriendo
